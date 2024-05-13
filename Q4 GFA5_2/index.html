@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacts List</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<script>
+    var contacts = [];
+    
+    function updateList() {
+      var contactsList = document.getElementById("contactsList");
+      contactsList.innerHTML = "<strong>Contacts:</strong> " + contacts.join(",");
+    }
+    
+    function addToList() {
+      var name = document.getElementById("name").value.trim();
+      
+      if (name !== "") {
+        contacts.push(name);
+      
+        if (contacts.length > 7) {
+          contacts.shift();
+        }
+      }
+      
+      document.getElementById("name").value = "";
+      updateList();
+    }
+    
+    function removeToList() {
+      contacts.pop();
+      
+      document.getElementById("name").value = "";
+      updateList();
+    }
+    </script>
+
+<body>
+  <div class="container">
+    Contacts List <br>
+    <input type="text" id="name" placeholder="Enter name">
+    <button onclick="addToList()">Add</button>
+    <button onclick="removeToList()">Remove</button>
+    <div id="contactsList"></div>
+  </div>
+</body>
+</html>
